@@ -23,5 +23,5 @@ php artisan migrate
 
 - publish package resources:
 ```
-php artisan vendor:publish --provider="KamrulHaque\LaravelModelLog\ModelLogServiceProvider"
+php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider"
 ```
