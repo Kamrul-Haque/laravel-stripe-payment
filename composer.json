@@ -1,0 +1,23 @@
+{
+    "name": "kamrul-haque/laravel-stripe-payment",
+    "description": "Add Stripe payment functionality with partial refund feature to your existing Laravel project. The package uses the latest stripe.js v3 and fully customizable to your need.",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^7.0",
+        "stripe/stripe-php": "^9.9"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "KamrulHaque\\LaravelStripePayment\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KamrulHaque\\LaravelStripePayment\\StripePaymentServiceProvider"
+            ]
+        }
+    }
+}
