@@ -25,3 +25,20 @@ php artisan migrate
 ```
 php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider"
 ```
+- By default package routes are protected by *Auth Middleware*. Override package routes to customize that:
+```
+// 'routes/web.php'
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+use KamrulHaque\LaravelStripePayment\Http\Controllers as LaravelStripePayment;
+
+Route::group(['middleware' => 'custom'], function () {
+    Route::resource('stripe-payments', LaravelStripePayment\StripePaymentController::class)
+         ->only('index', 'create', 'store');
+    Route::post('stripe-payments/{stripePayment}/refund', [LaravelStripePayment\StripePaymentController::class, 'refund'])
+         ->name('stripe-payments.refund');
+});
+
+```
