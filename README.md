@@ -14,7 +14,7 @@ Migrate the necessary database tables:
 php artisan migrate
 ```
 
-Publish ``checkout.js`` needed for ``Stripe`` checout to your public folder:
+Publish ``checkout.js`` needed for ``Stripe`` checkout to your public folder:
 ```
 php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="public"
 ```
