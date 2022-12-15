@@ -14,6 +14,11 @@ Migrate the necessary database tables:
 php artisan migrate
 ```
 
+Publish ``checkout.js`` needed for ``Stripe`` checout to your public folder:
+```
+php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="public"
+```
+
 ## Usage
 
 - Access the checkout page by ``stripe-payments/create`` *uri* added to your application by the package
@@ -25,7 +30,7 @@ php artisan migrate
 ```
 php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider"
 ```
-- By default package routes are protected by *Auth Middleware*. Override package routes to customize that:
+- By default package routes are protected by ``Auth Middleware``. Override package routes to customize that:
 ```
 // 'routes/web.php'
 
