@@ -9,6 +9,11 @@ Install the package via [composer](https://getcomposer.org/):
 composer require kamrul-haque/laravel-stripe-payment
 ```
 
+Publish ``migrations`` needed for storing the payments:
+```
+php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="migrations"
+```
+
 Migrate the necessary database tables:
 ```
 php artisan migrate
@@ -17,6 +22,16 @@ php artisan migrate
 Publish ``checkout.js`` needed for ``Stripe`` checkout to your public folder:
 ```
 php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="public"
+```
+
+## Configuration
+
+Set the ``Stripe`` *Api Keys* in ``.env``:
+```
+// .env
+
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
 ```
 
 ## Usage
@@ -37,13 +52,14 @@ php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePa
 <?php
 
 use Illuminate\Support\Facades\Route;
-use KamrulHaque\LaravelStripePayment\Http\Controllers as LaravelStripePayment;
+use App\Http\Controllers as Controllers;
 
 Route::group(['middleware' => 'custom'], function () {
-    Route::resource('stripe-payments', LaravelStripePayment\StripePaymentController::class)
+    Route::resource('stripe-payments', Controllers\StripePaymentController::class)
          ->only('index', 'create', 'store');
-    Route::post('stripe-payments/{stripePayment}/refund', [LaravelStripePayment\StripePaymentController::class, 'refund'])
+    Route::post('stripe-payments/{stripePayment}/refund', [Controllers\StripePaymentController::class, 'refund'])
          ->name('stripe-payments.refund');
 });
 
 ```
+- Change *Namespaces* in ``StripePaymentController``

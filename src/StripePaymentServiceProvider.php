@@ -23,7 +23,6 @@ class StripePaymentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         // for configuration files
         $this->publishes([
             __DIR__ . '/../config/stripe.php' => config_path('stripe.php'),
@@ -33,8 +32,8 @@ class StripePaymentServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         // for migrations
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        if (!class_exists('CreateStripePaymentsTable')) {
+        if (!class_exists('CreateStripePaymentsTable'))
+        {
             $this->publishes([
                 __DIR__ . '/../stubs/create_stripe_payments_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_stripe_payments_table.php')
             ], 'migrations');
