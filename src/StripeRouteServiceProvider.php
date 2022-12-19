@@ -10,16 +10,10 @@ class StripeRouteServiceProvider extends RouteServiceProvider
     public function boot()
     {
         parent::boot();
-    }
 
-    public function map()
-    {
-        $this->mapStripeRoutes();
-    }
-
-    protected function mapStripeRoutes()
-    {
-        Route::middleware('web')
-             ->group(base_path('routes/stripe.php'));
+        $this->routes(function () {
+            Route::middleware('web')
+                ->group(base_path('routes/stripe.php'));
+        });
     }
 }

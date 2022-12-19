@@ -33,8 +33,7 @@ class StripePaymentServiceProvider extends ServiceProvider
         ], 'laravel-stripe-configs');
 
         // for migrations
-        if (!class_exists('CreateStripePaymentsTable'))
-        {
+        if (!class_exists('CreateStripePaymentsTable')) {
             $this->publishes([
                 __DIR__ . '/../stubs/database/migrations/create_stripe_payments_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_stripe_payments_table.php')
             ], 'laravel-stripe-migrations');
@@ -55,7 +54,7 @@ class StripePaymentServiceProvider extends ServiceProvider
         // for backend
         $this->publishes([
             __DIR__ . '/../stubs/Models/StripePayment.php.stub' => app_path('Models/StripePayment.php'),
-            __DIR__ . '/Http/Controllers/StripePaymentController.php.stub' => app_path('Http/Controllers/StripePaymentController.php'),
+            __DIR__ . '/../Stubs/Http/Controllers/StripePaymentController.php.stub' => app_path('Http/Controllers/StripePaymentController.php'),
             __DIR__ . '/../stubs/routes/stripe.php.stub' => base_path('routes/stripe.php')
         ], 'laravel-stripe');
     }
