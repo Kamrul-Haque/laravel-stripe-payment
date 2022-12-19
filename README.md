@@ -1,5 +1,7 @@
 # laravel-stripe-payment
 
+[![Latest Stable Version](http://poser.pugx.org/kamrul-haque/laravel-stripe-payment/v)](https://packagist.org/packages/kamrul-haque/laravel-stripe-payment) [![Total Downloads](http://poser.pugx.org/kamrul-haque/laravel-stripe-payment/downloads)](https://packagist.org/packages/kamrul-haque/laravel-stripe-payment) [![Latest Unstable Version](http://poser.pugx.org/kamrul-haque/laravel-stripe-payment/v/unstable)](https://packagist.org/packages/kamrul-haque/laravel-stripe-payment) [![License](http://poser.pugx.org/kamrul-haque/laravel-stripe-payment/license)](https://packagist.org/packages/kamrul-haque/laravel-stripe-payment) ![GitHub Repo stars](https://img.shields.io/github/stars/Kamrul-Haque/laravel-stripe-payment?color=F5BD16)
+
 Add Stripe payment functionality with partial refund feature to your existing Laravel project. The package uses the latest stripe.js v3 and fully customizable to your need.
 
 ## Installation
@@ -62,4 +64,4 @@ Route::group(['middleware' => 'custom'], function () {
 });
 
 ```
-- Change *Namespaces* in ``StripePaymentController``
+- Change *Namespaces* in ``App\Http\Controllers\StripePaymentController``
