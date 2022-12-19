@@ -16,4 +16,10 @@ class StripeRouteServiceProvider extends RouteServiceProvider
     {
         $this->mapStripeRoutes();
     }
+
+    protected function mapStripeRoutes()
+    {
+        Route::middleware(['web', 'auth'])
+             ->group(base_path('routes/stripe.php'));
+    }
 }
