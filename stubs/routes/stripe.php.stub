@@ -1,10 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StripePaymentController;
-
-Route::resource('stripe-payments', StripePaymentController::class)
+Route::resource('stripe-payments', App\Http\Controllers\StripePaymentController::class)
      ->only('index', 'create', 'store');
-Route::post('stripe-payments/{stripePayment}/refund', [StripePaymentController::class, 'refund'])
+Route::post('stripe-payments/{stripePayment}/refund', [App\Http\Controllers\StripePaymentController::class, 'refund'])
      ->name('stripe-payments.refund');
-
