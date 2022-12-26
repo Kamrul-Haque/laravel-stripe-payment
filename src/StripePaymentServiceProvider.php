@@ -30,12 +30,12 @@ class StripePaymentServiceProvider extends ServiceProvider
             __DIR__ . '/../Stubs/Http/Controllers/StripePaymentController.php.stub' => app_path('Http/Controllers/StripePaymentController.php'),
             __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-stripe-payment/'),
             __DIR__ . '/../public' => public_path('vendor/laravel-stripe-payment'),
+            __DIR__ . '/../stubs/routes/stripe.php.stub' => base_path('routes/stripe.php'),
         ], 'laravel-stripe');
 
         file_put_contents(
             base_path('routes/web.php'),
-            file_get_contents(__DIR__ . '/../stubs/routes/stripe.php.stub'),
-            FILE_APPEND
+            str_replace("require __DIR__.'/auth.php';", "require __DIR__.'/auth.php';", file_get_contents(base_path('routes/web.php')))
         );
     }
 }
