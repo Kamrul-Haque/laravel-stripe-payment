@@ -15,7 +15,7 @@ class StripePaymentController extends Controller
     {
         $stripePayments = StripePayment::latest()->paginate(5);
 
-        return view('laravel-stripe-payment::index', compact('stripePayments'));
+        return view('stripe-payments.index', compact('stripePayments'));
     }
 
     public function store(Request $request)
@@ -54,7 +54,7 @@ class StripePaymentController extends Controller
             $clientSecret = $paymentIntend->client_secret;
             $publicKey = $stripePublicKey;
 
-            return view('laravel-stripe-payment::checkout', compact('clientSecret', 'publicKey', 'amount'));
+            return view('stripe-payments.checkout', compact('clientSecret', 'publicKey', 'amount'));
 
         }
         catch (\Exception $exception)
