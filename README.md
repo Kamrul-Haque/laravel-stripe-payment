@@ -11,19 +11,14 @@ Install the package via [composer](https://getcomposer.org/):
 composer require kamrul-haque/laravel-stripe-payment
 ```
 
-Publish ``migrations`` needed for storing the payments:
+Publish ``resources`` of the package:
 ```
-php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="migrations"
+php artisan vendor:publish --tag="laravel-stripe"
 ```
 
 Migrate the necessary database tables:
 ```
 php artisan migrate
-```
-
-Publish ``checkout.js`` needed for ``Stripe`` checkout to your public folder:
-```
-php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider" --tag="public"
 ```
 
 ## Configuration
@@ -36,32 +31,21 @@ STRIPE_PUBLIC_KEY=
 STRIPE_SECRET_KEY=
 ```
 
+Add ``routes`` to ``web.php``:
+```
+// routes/web.php
+
+<?php
+
+use App\Http\Controllers as Controllers;
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => 'auth'], function () {
+    require __DIR__.'/stripe.php';
+});
+```
+
 ## Usage
 
 - Access the checkout page by ``stripe-payments/create`` *uri* added to your application by the package
 - Access the payments completed and partial refund functionality by ``stripe-payments`` *uri* added to your application by the package
-
-## Cutomization
-
-- publish package resources:
-```
-php artisan vendor:publish --provider="KamrulHaque\LaravelStripePayment\StripePaymentServiceProvider"
-```
-- By default package routes are protected by ``Auth Middleware``. Override package routes to customize that:
-```
-// 'routes/web.php'
-
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Controllers;
-
-Route::group(['middleware' => 'custom'], function () {
-    Route::resource('stripe-payments', Controllers\StripePaymentController::class)
-         ->only('index', 'create', 'store');
-    Route::post('stripe-payments/{stripePayment}/refund', [Controllers\StripePaymentController::class, 'refund'])
-         ->name('stripe-payments.refund');
-});
-
-```
-- Change *Namespaces* in ``App\Http\Controllers\StripePaymentController``
