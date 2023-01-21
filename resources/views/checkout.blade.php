@@ -1,4 +1,4 @@
-@extends('laravel-stripe-payment::layout')
+@extends('stripe-payments.layout')
 
 @section('content')
     <div class="container">
